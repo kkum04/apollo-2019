@@ -1,4 +1,4 @@
-//import React from 'react';
+import React from 'react';
 import {gql} from 'apollo-boost';
 import {useParams} from 'react-router-dom';
 import {useQuery} from '@apollo/react-hooks';
@@ -22,13 +22,22 @@ export default () => {
     }
   });
 
-  if (loading) {
-    return 'Loading...'
-  }
+  return (
+    <>
+      <h1>{loading ? 'Loading...' : data.movie.title}</h1>
+      {!loading && data && data.movie && (
+        <>
+          <h2>
+            {data.movie.language} * {data.movie.rating}
+          </h2>
 
-  if (data && data.movie) {
-    return data.movie.title;
-  }
+          <p>{data.movie.description}</p>
+        </>
+      )}
 
-  return '';
-}
+      {!loading && data && data.movie && (
+        <img src={data.movie.medium_cover_image} alt={'이미지'} />
+      )}
+    </>
+  );
+};
