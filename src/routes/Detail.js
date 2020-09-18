@@ -25,7 +25,7 @@ export default () => {
   return (
     <>
       <h1>{loading ? 'Loading...' : data.movie.title}</h1>
-      {!loading && data && data.movie && (
+      {data?.movie && (
         <>
           <h2>
             {data.movie.language} * {data.movie.rating}
@@ -35,7 +35,7 @@ export default () => {
         </>
       )}
 
-      {!loading && data && data.movie && (
+      {data?.movie && (
         <img src={data.movie.medium_cover_image} alt={'이미지'} />
       )}
     </>
